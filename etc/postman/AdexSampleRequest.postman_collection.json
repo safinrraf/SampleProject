@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "cc20b4e4-aa1d-45db-bf21-f5c7440e2c7e",
+		"name": "Adex Sample request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16684324"
+	},
+	"item": [
+		{
+			"name": "Monitoring",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/internal/monitoring/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"internal",
+								"monitoring",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monitoring",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/internal/monitoring",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"internal",
+								"monitoring"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerID\":1,\n    \"tagID\":2,\n    \"userID\":\"aaaaaaaa-bbbb-cccc-1111-222222222222\",\n    \"remoteIP\":\"123.234.56.78\",\n    \"timestamp\":1500000000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/customer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

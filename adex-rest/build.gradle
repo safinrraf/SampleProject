@@ -1,0 +1,89 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'org.openapi.generator' version "${openApiCodegenVersion}"
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+group = 'com.adex'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '21'
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"
+    implementation "jakarta.validation:jakarta.validation-api:${jakartaValidationApiVersion}"
+    implementation "org.openapitools:jackson-databind-nullable:${jacksonDatabindNullableVersion}"
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+openApiValidate {
+    inputSpec = "${rootDir}/openapi-spec/openapi_spec.yml"
+}
+
+//That is not really works for the Demo app
+//because t requires also the mustache templates to generate nice code
+//so here it just to show that it is possible
+openApiGenerate {
+    validateSpec = true
+    generatorName = "spring"
+    library = "spring-boot"
+    inputSpec = "${rootDir}/openapi-spec/openapi_spec.yml"
+    outputDir = "${projectDir}"
+
+    globalProperties = [
+            models: "",
+            api: ""
+    ]
+
+    configOptions = [
+            dateLibrary:                "java8",
+            hideGenerationTimestamp:    "true",
+            withNoCodegenComment:       "true",
+            performBeanValidation:      "false",
+            useBeanValidation:          "true",
+            useTags:                    "true",
+            singleContentTypes:         "true",
+            serializableModel:          "false",
+            basePackage:                "com.adex.demo.rest",
+            configPackage:              "com.adex.demo.rest",
+            apiPackage:                 "com.adex.demo.rest.api",
+            modelPackage:               "com.adex.demo.rest.models",
+            invokerPackage:             "com.adex.demo.rest",
+            skipDefaultInterface:       "true",
+            interfaceOnly:              "true",
+    ]
+}
+
+jar {
+    enabled = true
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add("-parameters")
+}

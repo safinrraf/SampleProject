@@ -1,0 +1,60 @@
+---
+openapi: 3.0.3
+
+info:
+  title: Demo Adex Service
+  description: >-
+    Test Demo Adex Service
+  version: "1.0.0"
+
+tags:
+  - name: API
+    description: Sample Request.
+
+paths:
+  '/api/v1/customer':
+    post:
+      tags:
+        - API
+      operationId: processCustomerRequest
+      description: Sample request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '202':
+          description: Accepted.
+
+components:
+  schemas:
+    CustomerRequest:
+      required:
+        - customerID
+        - tagID
+        - userID
+        - remoteIP
+        - timestamp
+      type: object
+      properties:
+        customerID:
+          type: integer
+          format: int64
+          example: '1'
+        tagID:
+          type: integer
+          format: int64
+          example: '2'
+        userID:
+          type: string
+          example: 'aaaaaaaa-bbbb-cccc-1111-222222222222'
+        remoteIP:
+          type: string
+          format: ipv4
+          example: "120.0.0.1"
+        timestamp:
+          type: integer
+          format: int64
+          example: '1500000000'
