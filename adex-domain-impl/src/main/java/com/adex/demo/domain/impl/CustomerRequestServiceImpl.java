@@ -1,7 +1,7 @@
 package com.adex.demo.domain.impl;
 
 import com.adex.demo.domain.api.CustomerRequestService;
-import com.adex.demo.domain.api.CustomerRequestValidationService;
+import com.adex.demo.domain.api.CustomerStatsProcessingContext;
 import com.adex.demo.domain.models.DomainCustomerRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomerRequestServiceImpl implements CustomerRequestService {
 
-    private final CustomerRequestValidationService validationService;
+    private final CustomerStatsProcessingContext statsProcessingContext;
 
     @Override
     public void processCustomerRequest(DomainCustomerRequest request) {
-        validationService.validateRequest(request);
+        final var context = statsProcessingContext.getCustomersContext(request);
+        final var statsManager = context.statsManager();
+        statsManager.countCustomerRequest(request);
+        if(context.adexException() != null) {
+            throw context.adexException();
+        }
     }
 }
