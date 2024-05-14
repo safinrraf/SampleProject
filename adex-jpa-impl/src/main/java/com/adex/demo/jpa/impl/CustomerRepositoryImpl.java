@@ -22,4 +22,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                         new CustomerNotFoundException("Customer with ID " + customerRequest.customerID() + " not found"));
         return entity.getActive();
     }
+
+    @Override
+    public void saveCustomerRequest(DomainCustomerRequest customerRequest) {
+        //TODO: replace with org.mapstruct
+        //TODO: and implement something
+    }
 }

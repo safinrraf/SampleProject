@@ -14,4 +14,11 @@ public interface CustomerRepository {
      * @throws {@code AdexUserNotFound} if user not found.
      */
     Integer getCustomerStatus(DomainCustomerRequest customerRequest);
+
+    /**
+     * Saves a Customer's request.
+     *
+     * @param customerRequest
+     */
+    void saveCustomerRequest(DomainCustomerRequest customerRequest);
 }
