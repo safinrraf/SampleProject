@@ -8,14 +8,16 @@ info:
   version: "1.0.0"
 
 tags:
-  - name: API
+  - name: CustomerRequest
     description: Sample Request.
+  - name: CustomerStats
+    description: Customer's stats.
 
 paths:
   '/api/v1/customer':
     post:
       tags:
-        - API
+        - CustomerRequest
       operationId: processCustomerRequest
       description: Sample request.
       requestBody:
@@ -27,6 +29,35 @@ paths:
       responses:
         '202':
           description: Accepted.
+
+  '/api/v1/stats/{customerId}':
+    get:
+      tags:
+        - CustomerStats
+      operationId: getCustomersStats
+      parameters:
+        - in: path
+          name: customerId
+          required: true
+          schema:
+            type: string
+          description: The Customer ID
+        - in: query
+          name: date
+          required: true
+          schema:
+            type: string
+            format: date
+          description: >
+            The date of the stats.
+      responses:
+        '200':
+          description: >
+            Customer's stats for the specific date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomersStatsResponse'
 
 components:
   schemas:
@@ -43,18 +74,34 @@ components:
           type: integer
           format: int64
           example: '1'
+          description: Customer ID
         tagID:
           type: integer
           format: int64
           example: '2'
+          description: TagID
         userID:
           type: string
           example: 'aaaaaaaa-bbbb-cccc-1111-222222222222'
+          description: User ID
         remoteIP:
           type: string
           format: ipv4
           example: "120.0.0.1"
+          description: Remote IP
         timestamp:
           type: integer
           format: int64
           example: '1500000000'
+          description: Timestamp
+
+    CustomersStatsResponse:
+      required:
+        - customerID
+      type: object
+      properties:
+        customerID:
+          type: integer
+          format: int64
+          example: '1'
+          description: Customer ID

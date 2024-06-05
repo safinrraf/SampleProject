@@ -18,7 +18,6 @@ public class CustomerRequestController implements CustomerRequestApi {
 
     @Override
     public org.springframework.http.ResponseEntity<Void> processCustomerRequest(CustomerRequest customerRequest) {
-        log.info(customerRequest.toString());
         //here should be a mapper by org.mapstruct
         service.processCustomerRequest(
                 new DomainCustomerRequest(customerRequest.getCustomerID(),
