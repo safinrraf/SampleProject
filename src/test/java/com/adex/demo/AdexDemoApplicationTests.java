@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Profile;
 @SpringBootTest
 class AdexDemoApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+  @Test
+  void contextLoads() {}
 }

@@ -1,3 +1,4 @@
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
@@ -5,6 +6,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version "${springBootVersion}" apply false
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+    id "com.diffplug.spotless" version "${spotlessVersion}"
 }
 
 dependencyManagement {
@@ -39,41 +41,49 @@ dependencies {
 }
 
 openApiValidate {
-    inputSpec = "${rootDir}/openapi-spec/openapi_spec.yml"
+    inputSpec.set("${rootDir}/openapi-spec/openapi_spec.yml")
 }
 
-//That is not really works for the Demo app
-//because t requires also the mustache templates to generate nice code
-//so here it just to show that it is possible
 openApiGenerate {
-    validateSpec = true
-    generatorName = "spring"
-    library = "spring-boot"
-    inputSpec = "${rootDir}/openapi-spec/openapi_spec.yml"
-    outputDir = "${projectDir}"
+    generatorName.set("spring")
+    library.set("spring-boot")
+    validateSpec.set(true)
+    inputSpec.set("${rootDir}/openapi-spec/openapi_spec.yml")
+    outputDir.set("${projectDir}")
+    apiPackage.set("com.adex.demo.rest.api")
+    modelPackage.set("com.adex.demo.rest.models")
+    //original templates are here -
+    //https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator/src/main/resources/JavaSpring
+    templateDir.set("${projectDir}/src/main/resources/openapitemplates")
+
+    typeMappings = [
+            Double: "BigDecimals"
+    ]
 
     globalProperties = [
-            models: "",
-            api: ""
+            apis: "",
+            models: ""
     ]
 
-    configOptions = [
-            dateLibrary:                "java8",
-            hideGenerationTimestamp:    "true",
-            withNoCodegenComment:       "true",
-            performBeanValidation:      "false",
-            useBeanValidation:          "true",
-            useTags:                    "true",
-            singleContentTypes:         "true",
-            serializableModel:          "false",
-            basePackage:                "com.adex.demo.rest",
-            configPackage:              "com.adex.demo.rest",
-            apiPackage:                 "com.adex.demo.rest.api",
-            modelPackage:               "com.adex.demo.rest.models",
-            invokerPackage:             "com.adex.demo.rest",
-            skipDefaultInterface:       "true",
-            interfaceOnly:              "true",
-    ]
+    configOptions.set([
+            dateLibrary: "java8",
+            useBeanValidation: "false",
+            performBeanValidation: "false",
+            hideGenerationTimestamp: "true",
+            singleContentTypes: "true",
+            skipDefaultInterface: "true",
+            interfaceOnly: "true",
+            useTags: "true",
+            additionalModelTypeAnnotations:
+                    "@lombok.Data;" +
+                    "@lombok.NoArgsConstructor;" +
+                    "@lombok.AllArgsConstructor"
+    ])
+}
+
+tasks.withType(GenerateTask).configureEach {
+    outputs.upToDateWhen { false }
+    outputs.cacheIf { false }
 }
 
 jar {
@@ -86,4 +96,18 @@ test {
 
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add("-parameters")
+}
+
+spotlessApply {
+    mustRunAfter "openApiGenerate"
+}
+
+spotless {
+    java {
+        // Use the default importOrder configuration
+        importOrder()
+        removeUnusedImports()
+        googleJavaFormat()
+        formatAnnotations()  // fixes formatting of type annotations, see below
+    }
 }
