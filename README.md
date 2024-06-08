@@ -15,8 +15,17 @@
 ### openapi-spec
 * openapi_spec.yml - API specification
 
-### How to run the project
+## How to run the project
+### gradle
 ```
-gradle clean build bootRun
+SPRING_PROFILES_ACTIVE=local gradle clean build bootRun
 ```
-
+### JAR
+```
+gradle clean bootJar
+java -Dspring.profiles.active=local -jar build/libs/adex-demo-0.0.1.jar
+```
+### Docker 
+```
+./build-docker-run.sh   
+```
