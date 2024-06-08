@@ -27,6 +27,7 @@ javadoc {
 
 group = 'com.adex'
 version = '0.0.1-SNAPSHOT'
+var jar_file_name = 'adex-demo-0.0.1.jar'
 
 configurations {
 	compileOnly {
@@ -63,11 +64,13 @@ tasks.named('test') {
 
 jar {
 	enabled = true
+	archiveFileName = "${jar_file_name}"
 }
 
 bootJar {
 	enabled = true
 	mainClass.set("com.adex.demo.AdexDemoApplication")
+	archiveFileName = "${jar_file_name}"
 }
 
 springBoot {
