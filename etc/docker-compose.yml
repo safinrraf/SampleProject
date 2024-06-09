@@ -1,5 +1,9 @@
+networks:
+  demo-network:
+    driver: bridge
+
 services:
-  mysqldb:
+  adex-mysql:
     image: mysql:latest
     container_name: adex-mysql
     restart: unless-stopped
@@ -9,5 +13,26 @@ services:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+    networks:
+      - demo-network
     volumes:
       - ./db:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  adex-demo:
+    image: safinrraf/sample_demo
+    depends_on:
+      adex-mysql:
+        condition: service_healthy
+    container_name: adex-demo
+    ports:
+      - "8080:8080"
+    networks:
+      - demo-network
+    environment:
+      - MYSQL_HOST=adex-mysql
+      - DB_USERNAME=root
+      - DB_PASSWORD=123456789

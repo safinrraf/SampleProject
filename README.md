@@ -18,10 +18,12 @@
 ## How to run the project
 ### gradle
 ```
+some how run MySql
 SPRING_PROFILES_ACTIVE=local gradle clean build bootRun
 ```
 ### JAR
 ```
+some how run MySql
 gradle clean bootJar
 java -Dspring.profiles.active=local -jar build/libs/adex-demo-0.0.1.jar
 ```
