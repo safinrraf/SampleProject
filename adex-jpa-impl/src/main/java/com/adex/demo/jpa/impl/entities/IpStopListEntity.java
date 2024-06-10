@@ -10,19 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "CUSTOMER")
+@Table(name = "IP_STOPLIST")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class CustomerEntity {
+public final class IpStopListEntity {
   @Id
-  @Column(name = "id")
-  private Long id;
-
-  @Column(name = "name")
-  private String name;
-
-  @Column(name = "active")
-  private Integer active;
+  @Column(name = "ip")
+  private Long ip;
 }

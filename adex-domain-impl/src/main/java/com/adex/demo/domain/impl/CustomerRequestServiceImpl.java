@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomerRequestServiceImpl implements CustomerRequestService {
 
-    private final CustomerStatsProcessingContext statsProcessingContext;
+  private final CustomerStatsProcessingContext statsProcessingContext;
 
-    @Override
-    public void processCustomerRequest(DomainCustomerRequest request) {
-        final var context = statsProcessingContext.getCustomersContext(request);
-        final var statsManager = context.statsManager();
-        statsManager.countCustomerRequest(request);
-        if(context.adexException() != null) {
-            throw context.adexException();
-        }
+  @Override
+  public void processCustomerRequest(DomainCustomerRequest request) {
+    final var context = statsProcessingContext.getCustomersContext(request);
+    final var statsManager = context.statsManager();
+    statsManager.countCustomerRequest(request);
+    if (context.adexException() != null) {
+      throw context.adexException();
     }
+  }
 }

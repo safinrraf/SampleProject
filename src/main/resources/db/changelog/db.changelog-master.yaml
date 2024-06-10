@@ -13,3 +13,5 @@ databaseChangeLog:
       file: classpath:/db/changelog/changes/006-insert-into-tables.sql
   - include:
       file: classpath:/db/changelog/changes/007-insert-into-tables.sql
+  - include:
+      file: classpath:/db/changelog/changes/008-rename-table.sql
