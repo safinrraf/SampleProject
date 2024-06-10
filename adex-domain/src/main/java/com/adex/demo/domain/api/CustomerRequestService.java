@@ -4,5 +4,5 @@ import com.adex.demo.domain.models.DomainCustomerRequest;
 
 public interface CustomerRequestService {
 
-    void processCustomerRequest(DomainCustomerRequest request);
+  void processCustomerRequest(DomainCustomerRequest request);
 }

@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CustomerRequestsProcessor {
 
-    private final CustomerRepository repository;
+  private final CustomerRepository repository;
 
-    @Scheduled(fixedDelay = 10)
-    public void processCustomerRequest() {
-        final var request = CustomerRequestsQueue.get();
-        log.info("Processing a new message from the BlockingQueue {}", request);
-        repository.saveCustomerRequest(request);
-    }
+  @Scheduled(fixedDelay = 10)
+  public void processCustomerRequest() {
+    final var request = CustomerRequestsQueue.get();
+    log.info("Processing a new message from the BlockingQueue {}", request);
+    repository.saveCustomerRequest(request);
+  }
 }
