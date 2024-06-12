@@ -1,0 +1,1 @@
+RENAME TABLE adex_db.ua_blacklist TO adex_db.user_agent_stoplist;

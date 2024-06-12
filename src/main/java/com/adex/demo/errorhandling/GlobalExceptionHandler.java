@@ -5,6 +5,7 @@ import com.adex.demo.domain.exceptions.CustomerDisabledException;
 import com.adex.demo.domain.exceptions.CustomerNotFoundException;
 import com.adex.demo.domain.exceptions.CustomerRequestValidationException;
 import com.adex.demo.domain.exceptions.IpStopListException;
+import com.adex.demo.domain.exceptions.UserAgentStopListException;
 import com.adex.demo.rest.models.AdexErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -44,6 +45,15 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({IpStopListException.class})
   public ResponseEntity<AdexErrorResponse> handleIpStopListException(IpStopListException e) {
+    final var errorResponse = new AdexErrorResponse();
+    errorResponse.setCode(403);
+    errorResponse.setMessage(e.getMessage());
+    return handleErrorException(e, errorResponse);
+  }
+
+  @ExceptionHandler({UserAgentStopListException.class})
+  public ResponseEntity<AdexErrorResponse> handleUserAgentStopListException(
+      UserAgentStopListException e) {
     final var errorResponse = new AdexErrorResponse();
     errorResponse.setCode(403);
     errorResponse.setMessage(e.getMessage());
