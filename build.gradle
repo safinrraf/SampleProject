@@ -50,7 +50,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.liquibase:liquibase-core'
+	implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
 
 	implementation "org.zalando:logbook-spring-boot-starter:${logbookVersion}"
 	compileOnly 'org.projectlombok:lombok'
@@ -78,7 +78,9 @@ springBoot {
 }
 
 spotless {
+	project.logger.lifecycle("LOG: spotless")
 	java {
+		target('src/*/java/**/*.java', '*/src/*/java/**/*.java')
 		// Use the default importOrder configuration
 		importOrder()
 		removeUnusedImports()

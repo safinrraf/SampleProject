@@ -14,18 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class CustomerRequestController implements CustomerRequestApi {
 
-    private final CustomerRequestService service;
+  private final CustomerRequestService service;
 
-    @Override
-    public org.springframework.http.ResponseEntity<Void> processCustomerRequest(CustomerRequest customerRequest) {
-        //here should be a mapper by org.mapstruct
-        service.processCustomerRequest(
-                new DomainCustomerRequest(customerRequest.getCustomerID(),
-                        customerRequest.getTagID(),
-                        customerRequest.getUserID(),
-                        customerRequest.getRemoteIP(),
-                        customerRequest.getTimestamp())
-        );
-        return ResponseEntity.accepted().build();
-    }
+  @Override
+  public org.springframework.http.ResponseEntity<Void> processCustomerRequest(
+      CustomerRequest customerRequest) {
+    // here should be a mapper by org.mapstruct
+    service.processCustomerRequest(
+        new DomainCustomerRequest(
+            customerRequest.getCustomerID(),
+            customerRequest.getTagID(),
+            customerRequest.getUserID(),
+            customerRequest.getRemoteIP(),
+            customerRequest.getTimestamp(),
+            customerRequest.toString(),
+            null));
+    return ResponseEntity.accepted().build();
+  }
 }

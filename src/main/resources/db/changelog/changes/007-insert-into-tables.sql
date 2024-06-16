@@ -1,1 +1,0 @@
-INSERT INTO adex_db.ua_blacklist VALUES ('A6-Indexer'),('Googlebot-News'),('Googlebot');

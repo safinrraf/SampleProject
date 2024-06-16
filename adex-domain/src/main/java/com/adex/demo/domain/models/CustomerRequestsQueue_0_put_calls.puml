@@ -1,0 +1,194 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "com.adex.demo.domain.models.CustomerRequestsQueue#put(DomainCustomerRequest)",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "com.adex.demo.domain.models.CustomerRequestsQueue",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_2989078 { 
+   	label=adex
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1882568891 { 
+   	label=demo
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_2034180552 { 
+   	label=CustomerRequestServiceImpl
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CustomerRequestServiceImpl1157377110XXXprocessCustomerRequest794404685[
+	label="+ processCustomerRequest()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerRequestServiceImpl
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_258336939 { 
+   	label=CustomerRequestsQueue
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CustomerRequestsQueue273129844XXXput794404685[
+	label="+ put()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerRequestsQueue
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_655364180 { 
+   	label=ValidCustomerRequestStrategy
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   ValidCustomerRequestStrategy1157377110XXXcountCustomerRequest794404685[
+	label="+ countCustomerRequest()"
+	style=filled
+	fillcolor=white
+	tooltip="ValidCustomerRequestStrategy
+
+&#10;  Counts requests.&#10; &#10;  @param request instance of {@code DomainCustomerRequest}&#10; "
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_657110573 { 
+   	label=CustomerRequestController
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CustomerRequestController1810722578XXXprocessCustomerRequest1482738865[
+	label="+ processCustomerRequest()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerRequestController
+
+&#10;  POST /api/v1/customer Sample request.&#10; &#10;  @param customerRequest (required)&#10;  @return Accepted. (status code 202)&#10; "
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_73883665 { 
+   	label=InvalidCustomerRequestStrategyImpl
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   InvalidCustomerRequestStrategyImpl1157377110XXXcountCustomerRequest794404685[
+	label="+ countCustomerRequest()"
+	style=filled
+	fillcolor=white
+	tooltip="InvalidCustomerRequestStrategyImpl
+
+&#10;  Counts requests.&#10; &#10;  @param request instance of {@code DomainCustomerRequest}&#10; "
+	fontcolor=darkgreen
+];
+} 
+} 
+} 
+
+'edges    
+CustomerRequestController1810722578XXXprocessCustomerRequest1482738865 -> CustomerRequestServiceImpl1157377110XXXprocessCustomerRequest794404685;
+CustomerRequestServiceImpl1157377110XXXprocessCustomerRequest794404685 -> InvalidCustomerRequestStrategyImpl1157377110XXXcountCustomerRequest794404685;
+InvalidCustomerRequestStrategyImpl1157377110XXXcountCustomerRequest794404685 -> CustomerRequestsQueue273129844XXXput794404685;
+ValidCustomerRequestStrategy1157377110XXXcountCustomerRequest794404685 -> CustomerRequestsQueue273129844XXXput794404685;
+    
+}
+@enduml

@@ -17,17 +17,11 @@ public class CustomerRepositoryImpl implements CustomerRepository {
   public Integer getCustomerStatus(DomainCustomerRequest customerRequest) {
     final var entity =
         entityRepository
-            .findById(customerRequest.customerID())
+            .findById(customerRequest.customerId())
             .orElseThrow(
                 () ->
                     new CustomerNotFoundException(
-                        "Customer with ID " + customerRequest.customerID() + " not found"));
+                        "Customer with ID " + customerRequest.customerId() + " not found"));
     return entity.getActive();
-  }
-
-  @Override
-  public void saveCustomerRequest(DomainCustomerRequest customerRequest) {
-    // TODO: replace with org.mapstruct
-    // TODO: and implement something
   }
 }

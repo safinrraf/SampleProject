@@ -5,7 +5,6 @@ plugins {
     id 'java-library'
     id 'org.springframework.boot' version "${springBootVersion}" apply false
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
-    id "com.diffplug.spotless" version "${spotlessVersion}"
 }
 
 dependencyManagement {
@@ -26,10 +25,16 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    runtimeOnly 'com.mysql:mysql-connector-j'
-
+    //important : lombok first
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    //important : and then mapstruct
+    compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -37,14 +42,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-spotless {
-    java {
-        // Use the default importOrder configuration
-        importOrder()
-        removeUnusedImports()
-        googleJavaFormat()
-        formatAnnotations()  // fixes formatting of type annotations, see below
-    }
 }

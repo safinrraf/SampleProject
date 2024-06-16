@@ -1,7 +1,7 @@
 package com.adex.demo.domain.impl;
 
 import com.adex.demo.domain.api.CustomerRepository;
-import com.adex.demo.domain.api.CustomerStatsProcessingContext;
+import com.adex.demo.domain.api.CustomerRequestProcessingContext;
 import com.adex.demo.domain.api.IpStopListService;
 import com.adex.demo.domain.exceptions.CustomerDisabledException;
 import com.adex.demo.domain.exceptions.CustomerRequestValidationException;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class CustomerStatsProcessingContextImpl implements CustomerStatsProcessingContext {
+public class CustomerRequestProcessingContextImpl implements CustomerRequestProcessingContext {
 
   private final CustomerRepository repository;
   private final IpStopListService stopListService;
@@ -36,27 +36,27 @@ public class CustomerStatsProcessingContextImpl implements CustomerStatsProcessi
   }
 
   @Override
-  public CustomersContext getCustomersContext(DomainCustomerRequest request) {
+  public CustomersContext getContext(DomainCustomerRequest request) {
     // TODO: re-think these ifs
-    if (StringUtils.isBlank(request.remoteIP()) || !isValidIPv4(request.remoteIP())) {
+    if (StringUtils.isBlank(request.remoteIp()) || !isValidIPv4(request.remoteIp())) {
       return new CustomersContext(
           new InvalidCustomerRequestStrategyImpl(),
           new CustomerRequestValidationException("remote IP is not valid"));
     }
 
-    if (!stopListService.checkIpInStopList(request.remoteIP())) {
+    if (!stopListService.checkIpInStopList(request.remoteIp())) {
       return new CustomersContext(
           new InvalidCustomerRequestStrategyImpl(),
-          new IpStopListException("IP " + request.remoteIP() + " is in the stop list"));
+          new IpStopListException("IP " + request.remoteIp() + " is in the stop list"));
     }
 
-    if (StringUtils.isBlank(request.userID()) || !isValidString(request.userID())) {
+    if (StringUtils.isBlank(request.userId()) || !isValidString(request.userId())) {
       return new CustomersContext(
           new InvalidCustomerRequestStrategyImpl(),
           new CustomerRequestValidationException("UserID is not valid"));
     }
 
-    if (request.tagID() == null || request.timestamp() == null) {
+    if (request.tagId() == null || request.timestamp() == null) {
       return new CustomersContext(
           new InvalidCustomerRequestStrategyImpl(),
           new CustomerRequestValidationException("Tag ID or Timestamp is not valid"));

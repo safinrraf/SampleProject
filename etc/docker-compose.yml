@@ -15,6 +15,10 @@ services:
       - "3306:3306"
     networks:
       - demo-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     volumes:
       - ./db:/var/lib/mysql
     healthcheck:
@@ -32,7 +36,13 @@ services:
       - "8080:8080"
     networks:
       - demo-network
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - MYSQL_HOST=adex-mysql
       - DB_USERNAME=root
       - DB_PASSWORD=123456789
