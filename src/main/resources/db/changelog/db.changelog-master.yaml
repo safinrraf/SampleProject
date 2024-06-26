@@ -1,19 +1,3 @@
 databaseChangeLog:
   - include:
-      file: classpath:/db/changelog/changes/001-initial-schema.sql
-  - include:
-      file: classpath:/db/changelog/changes/002-add-new-tables.sql
-  - include:
-      file: classpath:/db/changelog/changes/003-add-new-tables.sql
-  - include:
-      file: classpath:/db/changelog/changes/004-add-new-tables.sql
-  - include:
-      file: classpath:/db/changelog/changes/005-insert-into-table.sql
-  - include:
-      file: classpath:/db/changelog/changes/006-insert-into-tables.sql
-  - include:
-      file: classpath:/db/changelog/changes/007-insert-into-tables.sql
-  - include:
-      file: classpath:/db/changelog/changes/008-rename-table.sql
-  - include:
-      file: classpath:/db/changelog/changes/009-rename-table.sql
+      file: classpath:/db/changelog/changes/001-init.yaml

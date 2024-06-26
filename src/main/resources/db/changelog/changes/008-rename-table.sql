@@ -1,1 +1,0 @@
-RENAME TABLE adex_db.ip_blacklist TO adex_db.ip_stoplist;

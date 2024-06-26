@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "USER_AGENT_STOPLIST")
+@Table(name = "USER_AGENT_STOP_LIST")
 @Setter
 @Getter
 @AllArgsConstructor

@@ -1,1 +1,0 @@
-INSERT INTO adex_db.ip_blacklist VALUES (0),(2130706433),(4294967295);

@@ -13,11 +13,4 @@ public interface CustomerRepository {
    * @throws CustomerNotFoundException if user not found.
    */
   Integer getCustomerStatus(DomainCustomerRequest customerRequest) throws CustomerNotFoundException;
-
-  /**
-   * Saves a Customer's request.
-   *
-   * @param customerRequest request.
-   */
-  void saveCustomerRequest(DomainCustomerRequest customerRequest);
 }

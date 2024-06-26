@@ -3,7 +3,7 @@ package com.adex.demo.domain.api;
 import com.adex.demo.domain.models.CustomersContext;
 import com.adex.demo.domain.models.DomainCustomerRequest;
 
-public interface CustomerStatsProcessingContext {
+public interface CustomerRequestProcessingContext {
 
   /**
    * Defines the context in which Customer's request will be processed.
@@ -11,5 +11,5 @@ public interface CustomerStatsProcessingContext {
    * @param request instance of {@code DomainCustomerRequest}
    * @return Customer's processing context.
    */
-  CustomersContext getCustomersContext(DomainCustomerRequest request);
+  CustomersContext getContext(DomainCustomerRequest request);
 }

@@ -1,1 +1,0 @@
-INSERT INTO adex_db.customer VALUES (1,'Big News Media Corp',1),(2,'Online Mega Store',1),(3,'Nachoroo Delivery',0),(4,'Euro Telecom Group',1);
