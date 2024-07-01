@@ -13,24 +13,24 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "CUSTOMER_WRONG_REQUESTS")
+@Table(schema = "ADEX_DB", name = "CUSTOMER_WRONG_REQUESTS")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CustomerInvalidRequestEntity {
+public final class CustomerInvalidRequestEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "request_id")
+  @Column(name = "REQUEST_ID")
   private Long requestId;
 
-  @Column(name = "customer_id")
+  @Column(name = "CUSTOMER_ID")
   private Long customerId;
 
-  @Column(name = "request_text", length = 30000)
+  @Column(name = "REQUEST_TEXT", length = 30000)
   private String request;
 
-  @Column(name = "error_message_text", length = 30000)
+  @Column(name = "ERROR_MESSAGE_TEXT", length = 30000)
   private String errorMessage;
 }

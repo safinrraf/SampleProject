@@ -31,3 +31,15 @@ java -Dspring.profiles.active=local -jar build/libs/adex-demo-0.0.1.jar
 ```
 ./build-docker-run.sh   
 ```
+
+## Check the manifest file
+```
+unzip -q -c build/libs/learn-java-1.0.0.jar  META-INF/MANIFEST.MF
+```
+
+
+## Viewing the Contents of a JAR File
+[The Java™ Tutorials](https://docs.oracle.com/javase/tutorial/deployment/jar/view.html)
+```
+jar tvf build/libs/learn-java-1.0.0.jar
+```

@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "IP_STOP_LIST")
+@Table(schema = "ADEX_DB", name = "IP_STOP_LIST")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public final class IpStopListEntity {
   @Id
-  @Column(name = "ip")
+  @Column(name = "IP")
   private Long ip;
 }

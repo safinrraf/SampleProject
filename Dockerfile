@@ -6,7 +6,7 @@ WORKDIR /SampleDemo
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} /SampleDemo/app.jar
 
-ENTRYPOINT ["java","-Dspring.profiles.active=local","-jar","/SampleDemo/app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/SampleDemo/app.jar"]
 
 #SPRING_PROFILES_ACTIVE=local gradle clean build bootRun
 #or
