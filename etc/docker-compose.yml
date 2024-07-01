@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=123456789
-      - MYSQL_DATABASE=adex_db
+      - MYSQL_DATABASE=ADEX_DB
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"

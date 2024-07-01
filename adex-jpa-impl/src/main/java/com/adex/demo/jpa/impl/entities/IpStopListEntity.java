@@ -17,6 +17,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public final class IpStopListEntity {
   @Id
-  @Column(name = "ip")
+  @Column(name = "IP")
   private Long ip;
 }

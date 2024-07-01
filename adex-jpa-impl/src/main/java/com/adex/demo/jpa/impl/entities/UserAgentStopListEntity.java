@@ -17,6 +17,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public final class UserAgentStopListEntity {
   @Id
-  @Column(name = "ua")
+  @Column(name = "USER_AGENT")
   private String userAgent;
 }

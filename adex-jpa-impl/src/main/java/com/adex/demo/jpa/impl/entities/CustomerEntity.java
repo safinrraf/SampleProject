@@ -17,12 +17,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public final class CustomerEntity {
   @Id
-  @Column(name = "id")
+  @Column(name = "ID")
   private Long id;
 
-  @Column(name = "name")
+  @Column(name = "NAME")
   private String name;
 
-  @Column(name = "active")
+  @Column(name = "ACTIVE")
   private Integer active;
 }
