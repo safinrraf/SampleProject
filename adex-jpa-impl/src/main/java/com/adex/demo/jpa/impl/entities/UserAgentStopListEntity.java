@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "USER_AGENT_STOP_LIST")
+@Table(schema = "ADEX_DB", name = "USER_AGENT_STOP_LIST")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public final class UserAgentStopListEntity {
   @Id
-  @Column(name = "ua")
+  @Column(name = "USER_AGENT")
   private String userAgent;
 }

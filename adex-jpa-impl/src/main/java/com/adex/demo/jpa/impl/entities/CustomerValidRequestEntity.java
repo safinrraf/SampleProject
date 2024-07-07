@@ -13,7 +13,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "CUSTOMER_VALID_REQUESTS")
+@Table(schema = "ADEX_DB", name = "CUSTOMER_VALID_REQUESTS")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -22,21 +22,21 @@ import lombok.ToString;
 public final class CustomerValidRequestEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "request_id")
+  @Column(name = "REQUEST_ID")
   private Long requestId;
 
-  @Column(name = "customer_id")
+  @Column(name = "CUSTOMER_ID")
   private Long customerId;
 
-  @Column(name = "tag_id")
+  @Column(name = "TAG_ID")
   private Integer tagId;
 
-  @Column(name = "user_id")
+  @Column(name = "USER_ID")
   private String userId;
 
-  @Column(name = "remote_ip")
+  @Column(name = "REMOTE_IP")
   private Long remoteIp;
 
-  @Column(name = "timestamp")
+  @Column(name = "TIMESTAMP")
   private Long timestamp;
 }

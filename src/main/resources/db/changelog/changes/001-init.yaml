@@ -3,26 +3,26 @@ databaseChangeLog:
       id: 1
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - createTable:
-            schemaName: adex_db
-            tableName: customer
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
             columns:
               - column:
-                  name: id
+                  name: ID
                   type: int(11) unsigned
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
+                  name: NAME
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: active
+                  name: ACTIVE
                   type: tinyint(1) unsigned
                   defaultValue: '1'
                   constraints:
@@ -31,14 +31,14 @@ databaseChangeLog:
       id: 2
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - createTable:
-            schemaName: adex_db
-            tableName: ip_stop_list
+            schemaName: ADEX_DB
+            tableName: IP_STOP_LIST
             columns:
               - column:
-                  name: ip
+                  name: IP
                   type: int(11) unsigned
                   constraints:
                     primaryKey: true
@@ -47,14 +47,14 @@ databaseChangeLog:
       id: 3
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - createTable:
-            schemaName: adex_db
-            tableName: user_agent_stop_list
+            schemaName: ADEX_DB
+            tableName: USER_AGENT_STOP_LIST
             columns:
               - column:
-                  name: ua
+                  name: USER_AGENT
                   type: varchar(255)
                   constraints:
                     primaryKey: true
@@ -63,197 +63,192 @@ databaseChangeLog:
       id: 4
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - createTable:
-            schemaName: adex_db
-            tableName: hourly_stats
+            schemaName: ADEX_DB
+            tableName: HOURLY_STATS
             columns:
               - column:
-                  name: id
+                  name: ID
                   type: int(11) unsigned
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: customer_id
+                  name: CUSTOMER_ID
                   type: int(11) unsigned
                   constraints:
                     nullable: false
               - column:
-                  name: time
+                  name: TIME
                   type: timestamp
                   constraints:
                     nullable: false
               - column:
-                  name: request_count
+                  name: REQUEST_COUNT
                   type: bigint(20) unsigned
                   defaultValue: '0'
                   constraints:
                     nullable: false
               - column:
-                  name: invalid_count
+                  name: INVALID_COUNT
                   type: bigint(20) unsigned
                   defaultValue: '0'
                   constraints:
                     nullable: false
         - addUniqueConstraint:
-            tableName: hourly_stats
-            columnNames: customer_id,time
-            constraintName: unique_customer_time
+            schemaName: ADEX_DB
+            tableName: HOURLY_STATS
+            columnNames: CUSTOMER_ID,TIME
+            constraintName: UNIQUE_CUSTOMER_TIME
         - createIndex:
-            tableName: hourly_stats
+            schemaName: ADEX_DB
+            tableName: HOURLY_STATS
             columns:
               - column:
-                  name: customer_id
-            indexName: customer_idx
+                  name: CUSTOMER_ID
+            indexName: CUSTOMER_IDX
   - changeSet:
       id: 5
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - insert:
-            schemaName: adex_db
-            tableName: customer
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
             columns:
               - column:
-                  name: id
+                  name: ID
                   value: 1
               - column:
-                  name: name
+                  name: NAME
                   value: "Big News Media Corp"
               - column:
-                  name: active
+                  name: ACTIVE
                   value: 1
         - insert:
-            schemaName: adex_db
-            tableName: customer
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
             columns:
               - column:
                   name: id
                   value: 2
               - column:
-                  name: name
+                  name: NAME
                   value: "Online Mega Store"
               - column:
-                  name: active
+                  name: ACTIVE
                   value: 1
         - insert:
-            schemaName: adex_db
-            tableName: customer
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
             columns:
               - column:
                   name: id
                   value: 3
               - column:
-                  name: name
+                  name: NAME
                   value: "Nachoroo Delivery"
               - column:
-                  name: active
+                  name: ACTIVE
                   value: 0
         - insert:
-            schemaName: adex_db
-            tableName: customer
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
             columns:
               - column:
-                  name: id
+                  name: ID
                   value: 4
               - column:
-                  name: name
+                  name: NAME
                   value: "Euro Telecom Group"
               - column:
-                  name: active
+                  name: ACTIVE
                   value: 1
   - changeSet:
       id: 6
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - insert:
-            schemaName: adex_db
-            tableName: ip_stop_list
+            schemaName: ADEX_DB
+            tableName: IP_STOP_LIST
             columns:
               - column:
                   name: ip
                   value: 0
         - insert:
-            schemaName: adex_db
-            tableName: ip_stop_list
+            schemaName: ADEX_DB
+            tableName: IP_STOP_LIST
             columns:
               - column:
-                  name: ip
-                  value: 2130706433
-        - insert:
-            schemaName: adex_db
-            tableName: ip_stop_list
-            columns:
-              - column:
-                  name: ip
+                  name: IP
                   value: 4294967295
   - changeSet:
       id: 7
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - insert:
-            schemaName: adex_db
-            tableName: user_agent_stop_list
+            schemaName: ADEX_DB
+            tableName: USER_AGENT_STOP_LIST
             columns:
               - column:
-                  name: ua
+                  name: USER_AGENT
                   value: "A6-Indexer"
         - insert:
-            schemaName: adex_db
-            tableName: user_agent_stop_list
+            schemaName: ADEX_DB
+            tableName: USER_AGENT_STOP_LIST
             columns:
               - column:
-                  name: ua
+                  name: USER_AGENT
                   value: "Googlebot-News"
         - insert:
-            schemaName: adex_db
-            tableName: user_agent_stop_list
+            schemaName: ADEX_DB
+            tableName: USER_AGENT_STOP_LIST
             columns:
               - column:
-                  name: ua
+                  name: USER_AGENT
                   value: "Googlebot"
   - changeSet:
       id: 8
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - createTable:
-            schemaName: adex_db
-            tableName: customer_wrong_requests
+            schemaName: ADEX_DB
+            tableName: CUSTOMER_WRONG_REQUESTS
             columns:
               - column:
-                  name: request_id
+                  name: REQUEST_ID
                   type: int(11) unsigned
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: customer_id
+                  name: CUSTOMER_ID
                   type: int(11) unsigned
                   constraints:
                     nullable: false
               - column:
-                  name: request_text
+                  name: REQUEST_TEXT
                   type: TEXT
                   constraints:
                     nullable: true
               - column:
-                  name: error_message_text
+                  name: ERROR_MESSAGE_TEXT
                   type: TEXT
                   constraints:
                     nullable: true
               - column:
-                  name: timestamp
+                  name: TIMESTAMP
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
@@ -262,35 +257,36 @@ databaseChangeLog:
       id: 9
       author: me.me
       labels: init-load
-      context: base-context
+      context: "dev,test"
       changes:
         - createTable:
-            tableName: customer_valid_requests
+            schemaName: ADEX_DB
+            tableName: CUSTOMER_VALID_REQUESTS
             columns:
               - column:
-                  name: request_id
+                  name: REQUEST_ID
                   type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: customer_id
+                  name: CUSTOMER_ID
                   type: bigint
               - column:
-                  name: remote_ip
+                  name: REMOTE_IP
                   type: bigint
               - column:
-                  name: tag_id
+                  name: TAG_ID
                   type: int
               - column:
-                  name: timestamp
+                  name: TIMESTAMP
                   type: bigint
               - column:
-                  name: user_id
+                  name: USER_ID
                   type: varchar(255)
               - column:
-                  name: ts
+                  name: TS
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
@@ -300,3 +296,35 @@ databaseChangeLog:
               autoIncrement: 5
               defaultCharacterSet: utf8mb4
               defaultCollate: utf8mb4_0900_ai_ci
+  - changeSet:
+      id: 10
+      author: me.me
+      labels: init-load
+      context: test
+      changes:
+        - insert:
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
+            columns:
+              - column:
+                  name: ID
+                  value: 10001
+              - column:
+                  name: NAME
+                  value: "Active Test 10001"
+              - column:
+                  name: ACTIVE
+                  value: 1
+        - insert:
+            schemaName: ADEX_DB
+            tableName: CUSTOMER
+            columns:
+              - column:
+                  name: id
+                  value: 10002
+              - column:
+                  name: NAME
+                  value: "Disabled Test 10002"
+              - column:
+                  name: ACTIVE
+                  value: 0

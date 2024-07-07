@@ -55,7 +55,14 @@ dependencies {
 	implementation "org.zalando:logbook-spring-boot-starter:${logbookVersion}"
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	testImplementation "org.springframework.boot:spring-boot-starter-web"
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	testImplementation "com.h2database:h2:${h2DbVersion}"
+	testImplementation "org.reactivestreams:reactive-streams:1.0.4"
+	testImplementation "org.springframework.boot:spring-boot-starter-webflux"
+	testImplementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+
 }
 
 tasks.named('test') {
