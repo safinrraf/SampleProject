@@ -23,10 +23,10 @@ public class AdexRequestInterceptor implements HandlerInterceptor {
     final var userAgent = request.getHeader("user-agent");
     log.info("Received a request from IP {}", request.getRemoteAddr());
     log.info("Received a request from User Agnt {}", userAgent);
-    if (!stopListService.checkIpInStopList(request.getRemoteAddr())) {
+    if (stopListService.getIpFromStopList(request.getRemoteAddr()).isPresent()) {
       log.error("IP {} is in the stop list!", request.getRemoteAddr());
     }
-    if (!userAgentStopListService.checkUserAgentInStopList(userAgent)) {
+    if (userAgentStopListService.getUserAgentFromStopList(userAgent).isPresent()) {
       log.error("User Agent {} is in the stop list!", userAgent);
     }
     return true;
