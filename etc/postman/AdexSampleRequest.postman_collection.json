@@ -49,13 +49,13 @@
 			]
 		},
 		{
-			"name": "Customer Request",
+			"name": "Valid Customer Request",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"customerID\":1,\n    \"tagID\":2,\n    \"userID\":\"aaaaaaaa-bbbb-cccc-1111-222222222222\",\n    \"remoteIP\":\"123.234.56.78\",\n    \"timestamp\":1500000000\n}",
+					"raw": "{\n    \"customerID\":1,\n    \"tagID\":2,\n    \"userID\":\"aaaaaaaa-bbbb-cccc-1111-222222222222\",\n    \"remoteIP\":\"123.234.56.71\",\n    \"timestamp\":{{var_timestamp}}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -75,6 +75,92 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Wrong Customer Request 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerID\":1,\n    \"tagID\":2,\n    \"userID\":\"aaaaaaaa-bbbb-cccc-1111-222222222222\",\n    \"timestamp\":{{var_timestamp}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/customer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wrong Customer Request 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerID\":4,\n    \"tagID\":2,\n    \"userID\":\"aaaaaaaa-bbbb-cccc-1111-222222222222\",\n    \"remoteIP\":\"123.234.56.71\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/customer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// Create a new Date object for the current date and time",
+					"const now = new Date();",
+					"",
+					"// Convert the date and time to a bigint value",
+					"const bigintTime = BigInt(now.getTime());",
+					"",
+					"pm.environment.set(\"var_timestamp\", Number(bigintTime));",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

@@ -28,6 +28,7 @@ gradle clean bootJar
 java -Dspring.profiles.active=local -jar build/libs/adex-demo-0.0.1.jar
 ```
 ### Docker 
+Approximate space required is 1.5Gb
 ```
 ./build-docker-run.sh   
 ```

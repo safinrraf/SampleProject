@@ -44,7 +44,7 @@ public class CustomerRequestProcessingContextImpl implements CustomerRequestProc
           new CustomerRequestValidationException("remote IP is not valid"));
     }
 
-    if (!stopListService.checkIpInStopList(request.remoteIp())) {
+    if (stopListService.getIpFromStopList(request.remoteIp()).isPresent()) {
       return new CustomersContext(
           new InvalidCustomerRequestStrategyImpl(),
           new IpStopListException("IP " + request.remoteIp() + " is in the stop list"));
