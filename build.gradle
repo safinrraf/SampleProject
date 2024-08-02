@@ -102,3 +102,10 @@ spotless {
 		formatAnnotations()  // fixes formatting of type annotations, see below
 	}
 }
+
+clean {
+	project.logger.lifecycle("CLEAN LOGS: will clean ${project.rootDir}/etc/hazelcast/logs/*.log")
+	delete fileTree("${project.rootDir}/etc/hazelcast/logs/") {
+		include '**/*'
+	}
+}

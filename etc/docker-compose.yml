@@ -30,9 +30,10 @@ services:
     image: hazelcast/hazelcast:latest
     container_name: adex-hazelcast
     environment:
-      - JAVA_OPTS=-Dhazelcast.config=/opt/hazelcast/config_ext/hazelcast.xml -Xmx512m -Xms256m -Dhazelcast.diagnostics.enabled=true -Dhazelcast.security.recommendations
+      - JAVA_OPTS=-Dhazelcast.diagnostics.directory=/opt/hazelcast/logs -Dhazelcast.diagnostics.metric.level=info -Dhazelcast.config=/opt/hazelcast/config_ext/hazelcast.xml -Xmx512m -Xms256m -Dhazelcast.diagnostics.enabled=true -Dhazelcast.security.recommendations
     volumes:
       - ./hazelcast/hazelcast.xml:/opt/hazelcast/config_ext/hazelcast.xml
+      - ./hazelcast/logs:/opt/hazelcast/logs
     ports:
       - "5701:5701"
     networks:
