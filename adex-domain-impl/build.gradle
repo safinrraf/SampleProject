@@ -24,7 +24,7 @@ dependencies {
     api project(":adex-domain")
 
     implementation 'org.springframework:spring-context'
-    implementation "org.apache.commons:commons-lang3:${ApacheCommonsLang3Version}"
+    implementation "org.apache.commons:commons-lang3:${apacheCommonsLang3Version}"
 
     implementation 'org.slf4j:slf4j-api'
 

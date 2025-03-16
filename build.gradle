@@ -52,22 +52,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
 
-
-	implementation 'org.springframework.boot:spring-boot-starter-cache'
-	implementation 'javax.cache:cache-api:1.1.1'
-	implementation "com.hazelcast:hazelcast:${hazelcastSpringVersion}"
-	implementation "com.hazelcast:hazelcast-spring:${hazelcastSpringVersion}"
-
-
 	implementation "org.zalando:logbook-spring-boot-starter:${logbookVersion}"
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation "org.springframework.boot:spring-boot-starter-web"
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
-	testImplementation "com.h2database:h2:${h2DbVersion}"
-	testImplementation "org.reactivestreams:reactive-streams:1.0.4"
-	testImplementation "org.springframework.boot:spring-boot-starter-webflux"
 	testImplementation "org.liquibase:liquibase-core:${liquibaseVersion}"
 
 }

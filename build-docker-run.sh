@@ -4,36 +4,36 @@ PROGRAM=${0##*/} # the version
 VERSION="$PROGRAM v1.0.0"
 LOG_TIME_FORMAT="%F %T"
 
-BASE_DIR=~/programm/AdexDemo
+BASE_DIR=.
 DOCKER_COMPOSE_YML=$BASE_DIR/etc/docker-compose.yml
 
-function loggging() {
+function lo3g() {
     local message=$1
     echo "$(date +"$LOG_TIME_FORMAT") $message"
 }
 
 function handle_error {
-    loggging "$(date +"$LOG_TIME_FORMAT") Caught an error with exit status $?"
+    lo3g "$(date +"$LOG_TIME_FORMAT") Caught an error with exit status $?"
 }
 
 source $BASE_DIR/etc/env.sh
 
-loggging "Start $VERSION"
-loggging "BASE_DIR.......$BASE_DIR"
-loggging "|"
-loggging "Gradle build"
+lo3g "Start $VERSION"
+lo3g "BASE_DIR.......$BASE_DIR"
+lo3g "|"
+lo3g "Gradle build"
 gradle clean bootJar
-loggging "|"
-loggging "Docker login"
+lo3g "|"
+lo3g "Docker login"
 docker login -u $DOCKER_USER --password-stdin < ./docker_password.pswd
-loggging "|"
-loggging "Docker compose down"
+lo3g "|"
+lo3g "Docker compose down"
 docker compose -f $DOCKER_COMPOSE_YML down --volumes --rmi all
-loggging "|"
-loggging "Docker build"
+lo3g "|"
+lo3g "Docker build"
 docker build --build-arg JAR_FILE=build/libs/\*.jar --tag safinrraf/sample_demo .
-loggging "|"
-loggging "Docker compose up"
+lo3g "|"
+lo3g "Docker compose up"
 docker compose -f $DOCKER_COMPOSE_YML up -d
 
-loggging "End $VERSION"
+lo3g "End $VERSION"
